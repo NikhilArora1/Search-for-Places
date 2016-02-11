@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="mapSearch">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  </head>
+  <body ng-controller="MainController">
+    <div class="container">
+      <h1 class="text-center">{{title}}</h1>
+
+      <div class="input-group">
+        <input type="text" class="form-control" id="searchInput" />
+        <span class="input-group-addon btn" id="search" ng-click="location()">Search</span>
+      </div>
+
+      <div id="error"></div>
+
+      <div id="savedResults" ng-show="showSavedResults">
+        <h2>Saved Results</h2>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success" ng-repeat="favorite in favorites">
+            <h3>{{favorite.name}}</h3>
+            <h4>Address: {{favorite.formatted_address}}</h4>
+          </li>
+        </ul>
+      </div>
+
+      <div id="results" ng-show="showResults">
+        <h2>Search Results</h2>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="place in places">
+            <h3>{{place.name}}</h3>
+            <h4>Address: {{place.formatted_address}}</h4>
+            <button type="button" class="btn btn-primary" ng-click="save(place)">Save</button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-8qPVXd8AQS4B__5uIGqnWS8F_aqw2eY&libraries=places"
+         async defer></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
